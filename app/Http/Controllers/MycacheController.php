@@ -37,12 +37,22 @@ class MycacheController extends Controller
         # 先判断对应的key有没有
         # 没有则执行匿名函数中的方法，然后再把数据库写到缓存中，后再返回给用户
         # 有，直接读缓存，给用户
-        $ret = Cache::remember('user',10,function(){
-            $ret = \DB::table('users')->where('id',1)->first();
-            return $ret;
-        });
-        dump(cache()->has('user'));
-        dump($ret);
+        // $ret = Cache::remember('user',10,function(){
+        //     $ret = \DB::table('users')->where('id',1)->first();
+        //     return $ret;
+        // });
+        // dump(cache()->has('user'));
+        // dump($ret);
         // return 'index';
+
+        # 删除单个
+        echo 1;
+        dump(Cache::forget('name'));
+        dump(cache()->has('namer'));
+
+        # 永久缓存
+        // Cache::forever('id',1000);
+        dump(Cache::forget('id'));
+        dump(cache('id'));
     }
 }
